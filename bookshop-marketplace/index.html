@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="marketplace" ng-controller="MarketplaceController">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{data.BrandName}}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="resources/css/shop-homepage.css" rel="stylesheet">
+    <link href="resources/css/modern-business.css" rel="stylesheet">
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+</head>
+
+<body>
+
+    <!-- Page Content -->
+    
+    <div class="container">
+    
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Bookshop
+                    <small>Marketplace</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead"></p>
+                <div class="list-group">
+                    <a ng-repeat="next in categories" href="index.html?category={{next.Id}}" class="list-group-item {{next.Id == category ? 'active' : ''}}">{{next.Name}}</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li ng-repeat="next in slides" data-target="#myCarousel" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div ng-repeat="next in slides" class="item {{$index == 0 ? 'active' : ''}}">
+                                    <img class="slide-image" src="{{next.Image}}" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div ng-repeat="next in products" class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <a href="{{next.Link}}">
+                            	<img class="img-responsive img-hover" src="{{next.Image}}" alt="">
+                            </a>
+                            <div class="caption">
+                                <h4 class="pull-right">{{ next.Currency === 1 ? '$' : next.Currency}}{{next.Price}}</h4>
+                                <h4><a href="{{next.Link}}">{{next.Title}}</a>
+                                </h4>
+                                <p>{{next.Description}}</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">15 reviews</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <h4><a href="#">More in this category?</a>
+                        </h4>
+                        <p>Send us a message what is missing here or whether a given product does not belong to this category.</p>
+                        <a class="btn btn-primary" target="_blank" href="contact.html">Give Feedback</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="../../../../../../services/v3/web/resources/jquery/2.0.3/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="../../../../../../services/v3/web/resources/bootstrap/3.3.7/bootstrap.min.js"></script>
+
+    <!-- AngularJS -->
+	<script type="text/javascript" src="../../../../../../services/v3/web/resources/angular/1.4.7/angular.min.js"></script>
+	<script type="text/javascript" src="../../../../../../services/v3/web/resources/angular/1.4.7/angular-resource.min.js"></script>
+	<script type="text/javascript" src="../../../../../../services/v3/web/resources/angular/1.4.7/angular.min.js"></script>
+	
+	<script type="text/javascript" src="resources/js/controller.js"></script>
+	
+</body>
+
+</html>

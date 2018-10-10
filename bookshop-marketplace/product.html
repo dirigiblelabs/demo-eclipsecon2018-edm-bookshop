@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="product" ng-controller="ProductController">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{data.BrandName}}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="resources/css/shop-item.css" rel="stylesheet">
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Page Content -->
+    <div class="container">
+    
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Bookshop
+                    <small>Marketplace</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead"></p>
+                <div class="list-group">
+                    <a ng-repeat="next in categories" href="index.html?category={{next.Id}}" class="list-group-item {{next.Id == category ? 'active' : ''}}">{{next.Name}}</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">{{product.Title}}</h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="img-responsive" src="{{product.Image}}" alt="">
+            </div>
+
+            <div class="col-md-4">
+                <h3>Description</h3>
+                <p>{{product.Description}}</p>
+                <h3>Details</h3>
+                <ul>
+                    <li>ISBN: {{product.ISBN}}</li>
+                    <li>Pages: {{product.Pages}}</li>
+                    <li>Our Price: {{ product.Currency === 1 ? '$' : product.Currency}}{{product.Price | number:2}}</li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h3 class="page-header">Related Products</h3>
+            </div>
+
+            <div ng-repeat="next in products" class="col-sm-2 col-xs-4">
+                <a href="{{next.Link}}">
+                    <img class="img-responsive img-hover" src="{{next.Image}}" alt="">
+                </a>
+            </div>
+
+        </div>
+        <!-- /.row -->
+        
+        <hr>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+    
+    
+    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title" id="modalLabel">Create a Review</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label>Your Name</label>
+							<input type="text" class="form-control" placeholder="Enter name" ng-model="review.UserName">
+						</div>
+						<div class="form-group">
+							<label>Comment</label>
+							<textarea rows=5 class="form-control" placeholder="Enter comment" ng-model="review.Comment"></textarea>
+						</div>
+						<div class="form-group">
+							<label>Rating</label>
+							<div>
+							  <span uib-rating ng-model="review.Rating" max="5" read-only="false" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></span>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" ng-show="actionType === 'new'" ng-click="create()">Comment</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="../../../../../../services/v3/web/resources/jquery/2.0.3/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="../../../../../../services/v3/web/resources/bootstrap/3.3.7/bootstrap.min.js"></script>
+
+	<!-- AngularJS -->
+	<script type="text/javascript" src="../../../../../../services/v3/web/resources/angular/1.4.7/angular.min.js"></script>
+	<script type="text/javascript" src="../../../../../../services/v3/web/resources/angular/1.4.7/angular-resource.min.js"></script>
+	
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.min.js"></script>
+	
+	<script type="text/javascript" src="resources/js/products/controller.js"></script>
+	
+</body>
+
+</html>
