@@ -8,11 +8,11 @@ angular.module('marketplace').controller('MarketplaceController', function ($sco
 	}
 	
 	$scope.slides = [{
-		"Image": "../vendorx-ecommerce-bookshop/images/daria-nepriakhina-474558-unsplash.jpg",
+		"Image": "../bookshop-data/img/daria-nepriakhina-474558-unsplash.jpg",
 	}, {
-		"Image": "../vendorx-ecommerce-bookshop/images/filios-sazeides-540205-unsplash.jpg",
+		"Image": "../bookshop-data/img/filios-sazeides-540205-unsplash.jpg",
 	}, {
-		"Image": "../vendorx-ecommerce-bookshop/images/thomas-william-302052-unsplash.jpg",
+		"Image": "../bookshop-data/img/thomas-william-302052-unsplash.jpg",
 	}];
 	
 	var categories = '../../js/bookshop/api/Products/Categories.js';
