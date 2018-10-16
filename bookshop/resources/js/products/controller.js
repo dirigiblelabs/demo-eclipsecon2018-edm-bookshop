@@ -11,7 +11,7 @@ angular.module('product').controller('ProductController', function ($scope, $htt
 		$scope.id = 1;
 	}
 	
-	var categories = '../../js/bookshop/api/Products/Categories.js';
+	var categories = '../../js/bookshop-admin/api/Products/Categories.js';
 	function loadCategories() {
 		$http.get(categories)
 		.success(function(data) {
@@ -20,7 +20,7 @@ angular.module('product').controller('ProductController', function ($scope, $htt
 	}
 	loadCategories();
 	
-	var product = '../../js/bookshop/api/Products/Books.js/' + $scope.id;
+	var product = '../../js/bookshop-admin/api/Products/Books.js/' + $scope.id;
 	function loadProduct() {
 		$http.get(product)
 		.success(function(data) {
@@ -29,7 +29,7 @@ angular.module('product').controller('ProductController', function ($scope, $htt
 	}
 	loadProduct();
 	
-	var products = '../../js/bookshop/api/Products/Books.js?Category=' + $scope.category;
+	var products = '../../js/bookshop-admin/api/Products/Books.js?Category=' + $scope.category;
 	function loadProducts() {
 		$http.get(products)
 		.success(function(data) {

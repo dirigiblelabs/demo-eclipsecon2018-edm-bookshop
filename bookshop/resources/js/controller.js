@@ -15,7 +15,7 @@ angular.module('marketplace').controller('MarketplaceController', function ($sco
 		"Image": "../bookshop-data/img/thomas-william-302052-unsplash.jpg",
 	}];
 	
-	var categories = '../../js/bookshop/api/Products/Categories.js';
+	var categories = '../../js/bookshop-admin/api/Products/Categories.js';
 	function loadCategories() {
 		$http.get(categories)
 		.success(function(data) {
@@ -24,7 +24,7 @@ angular.module('marketplace').controller('MarketplaceController', function ($sco
 	}
 	loadCategories();
 	
-	var products = '../../js/bookshop/api/Products/Books.js?Category=' + $scope.category;
+	var products = '../../js/bookshop-admin/api/Products/Books.js?Category=' + $scope.category;
 	function loadProducts() {
 		$http.get(products)
 		.success(function(data) {
