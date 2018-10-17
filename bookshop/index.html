@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="marketplace" ng-controller="MarketplaceController">
+<html lang="en" ng-app="index" ng-controller="IndexController">
 
 <head>
 
@@ -20,7 +20,7 @@
     <!-- Custom CSS -->
     <link href="resources/css/shop-homepage.css" rel="stylesheet">
     <link href="resources/css/modern-business.css" rel="stylesheet">
-    
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,98 +32,95 @@
 
 <body>
 
+    <div ng-include="'resources/tmpl/nav.tmpl.html'"></div>
+
+
+    <!-- Header Carousel -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li ng-repeat="next in slides" data-target="#myCarousel" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div ng-repeat="next in slides" class="item {{$index == 0 ? 'active' : ''}}">
+                <div class="fill" style="background-image:url('{{next.Image}}');"></div>
+                <div class="carousel-caption">
+                    <h2>{{next.Caption}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </header>
+
     <!-- Page Content -->
-    
     <div class="container">
     
-        <!-- Page Heading/Breadcrumbs -->
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                {{data.WelcomeMessage}}
+            </h1>
+        </div>
+            
+        <!-- Features Section -->
+        <div class="row">
+            
+            <section class="features-icons bg-light text-center">
+		      <div class="container">
+		        <div class="row">
+		          <div class="col-lg-4" ng-repeat="next in features">
+		            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+		              <div class="features-icons-icon d-flex">
+		                <i class="fa fa-{{next.Image}} m-auto text-primary" style="color: {{next.Color}}"></i>
+		              </div>
+		              <h3>{{next.Name}}</h3>
+		              <p class="lead mb-0">{{next.Description}}</p>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </section>
+        </div>
+        <!-- /.row -->
+
+        <!-- Promotions Section -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Bookshop
-                    <small>Marketplace</small>
-                </h1>
+                <h2 class="page-header">{{data.PromotionsHeading}}</h2>
+            </div>
+            <div class="col-md-{{12 / data.PromotionsPerLine}} col-sm-{{12 / data.PromotionsPerLine}}" ng-repeat="next in promotions">
+                <a href="{{next.Link}}">
+                    <img class="img-responsive img-portfolio img-hover" src="{{next.Image}}" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- /.row -->
+        
+        <!-- Clearance Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">{{data.ClearanceHeading}}</h2>
+            </div>
+            <div class="col-md-{{12 / data.ClearancePerLine}} col-sm-{{12 / data.ClearancePerLine}}" ng-repeat="next in clearance">
+                <a href="{{next.Link}}">
+                    <img class="img-responsive img-portfolio img-hover" src="{{next.Image}}" alt="">
+                </a>
             </div>
         </div>
         <!-- /.row -->
 
-        <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead"></p>
-                <div class="list-group">
-                    <a ng-repeat="next in categories" href="index.html?category={{next.Id}}" class="list-group-item {{next.Id == category ? 'active' : ''}}">{{next.Name}}</a>
-                </div>
-            </div>
-
-            <div class="col-md-9">
-
-                <div class="row carousel-holder">
-
-                    <div class="col-md-12">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li ng-repeat="next in slides" data-target="#myCarousel" data-slide-to="{{$index}}" class="{{$index == 0 ? 'active' : ''}}"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div ng-repeat="next in slides" class="item {{$index == 0 ? 'active' : ''}}">
-                                    <img class="slide-image" src="{{next.Image}}" alt="">
-                                </div>
-                            </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-
-                    <div ng-repeat="next in products" class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <a href="{{next.Link}}">
-                            	<img class="img-responsive img-hover" src="{{next.Image}}" alt="">
-                            </a>
-                            <div class="caption">
-                                <h4 class="pull-right">{{ next.Currency === 1001 ? '$' : next.Currency}}{{next.Price}}</h4>
-                                <h4><a href="{{next.Link}}">{{next.Title}}</a>
-                                </h4>
-                                <p>{{next.Description}}</p>
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <h4><a href="#">More in this category?</a>
-                        </h4>
-                        <p>Send us a message what is missing here or whether a given product does not belong to this category.</p>
-                        <a class="btn btn-primary" target="_blank" href="contact.html">Give Feedback</a>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+        <hr>
 
     </div>
-    <!-- /.container -->
-
+        
     <!-- jQuery -->
     <script type="text/javascript" src="../../../../../../services/v3/web/resources/jquery/2.0.3/jquery.min.js"></script>
 
@@ -133,9 +130,15 @@
     <!-- AngularJS -->
 	<script type="text/javascript" src="../../../../../../services/v3/web/resources/angular/1.4.7/angular.min.js"></script>
 	<script type="text/javascript" src="../../../../../../services/v3/web/resources/angular/1.4.7/angular-resource.min.js"></script>
-	<script type="text/javascript" src="../../../../../../services/v3/web/resources/angular/1.4.7/angular.min.js"></script>
 	
-	<script type="text/javascript" src="resources/js/controller.js"></script>
+	<!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    });
+    </script>
+    
+    <script type="text/javascript" src="resources/js/controller.js"></script>
 	
 </body>
 

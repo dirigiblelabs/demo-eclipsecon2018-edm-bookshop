@@ -1,6 +1,14 @@
 angular.module('product', ['ngAnimate', 'ngSanitize', 'ui.bootstrap']);
 angular.module('product').controller('ProductController', function ($scope, $http, $location) {
-	
+
+	$scope.menu = [{
+		'label': 'Marketplace',
+		'uri': 'marketplace.html'
+	}, {
+		'label': 'Services',
+		'uri': 'services.html'
+	}];
+
 	var searchParams = new URLSearchParams(window.location.search);
 	$scope.category = searchParams.get('category');
 	if (!$scope.category) {
