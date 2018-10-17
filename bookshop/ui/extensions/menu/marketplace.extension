@@ -1,0 +1,5 @@
+{
+	"description": "Marketplace menu",
+	"extensionPoint": "bookshop-menu",
+	"module": "bookshop/ui/extensions/menu/marketplace.js"
+}

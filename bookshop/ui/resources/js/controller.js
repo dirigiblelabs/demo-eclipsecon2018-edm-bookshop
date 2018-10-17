@@ -9,23 +9,25 @@ angular.module('index').controller('IndexController', function ($scope, $http) {
 	   'ClearanceHeading': 'Clearance Corner',
 	   'ClearancePerLine': 6
 	};
-	
-	$scope.menu = [{
-		'label': 'Marketplace',
-		'uri': 'marketplace.html'
-	}, {
-		'label': 'Services',
-		'uri': 'services.html'
-	}];
+
+	var menu = '../../js/bookshop/api/Menu.js';
+	function loadMenu() {
+		$http.get(menu)
+		.success(function(data) {
+			$scope.menu = data;
+		});
+	}
+	loadMenu();
+
 	
 	$scope.slides = [{
-		"Image":"../vendorx-ecommerce-bookshop/images/daria-nepriakhina-474558-unsplash.jpg",
+		"Image":"../bookshop-data/img/daria-nepriakhina-474558-unsplash.jpg",
 		"Caption":"Great Collection"
 	}, {
-		"Image":"../vendorx-ecommerce-bookshop/images/filios-sazeides-540205-unsplash.jpg",
+		"Image":"../bookshop-data/img/filios-sazeides-540205-unsplash.jpg",
 		"Caption":"Low Prices"
 	}, {
-		"Image":"../vendorx-ecommerce-bookshop/images/thomas-william-302052-unsplash.jpg",
+		"Image":"../bookshop-data/img/thomas-william-302052-unsplash.jpg",
 		"Caption":"Lots of Fun"
 	}];
 

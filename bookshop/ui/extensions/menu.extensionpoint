@@ -1,0 +1,4 @@
+{
+	"description": "Extension Point for the Menu Providers",
+	"name": "bookshop-menu"
+}
